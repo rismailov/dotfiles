@@ -1,0 +1,74 @@
+" Sources:
+" https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+" https://www.youtube.com/watch?v=SDiKLLrUZMI&t=299s
+" google :D
+
+" Global settings
+set hlsearch " always highlight searched regexp
+
+" ========================================================================
+" Plugins
+" ========================================================================
+set clipboard+=unnamed
+set clipboard+=ideaput
+set ideajoin
+set idearefactormode=keep
+set surround
+set commentary
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapCloseDir='h'
+
+let mapleader = " "
+
+" Avoid pressing ESC (todo: remap caps lock to esc on a system level in future)
+:imap kj <Esc>
+:imap jk <Esc>
+
+" clear the search buffer when hitting return
+nnoremap <F1> :nohlsearch<cr>
+
+" Faster config reloads
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+" Terminal
+"" nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+" Distraction (ZEN) mode
+nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
+
+" Tabs
+nnoremap <s-l> :action NextTab<CR>
+nnoremap <s-h> :action PreviousTab<CR>
+nnoremap <Leader>kw :action CloseAllEditors<CR>
+
+" Window management
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+" Indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Move lines in visual mode
+vnoremap <s-k> :action MoveLineUp<CR>
+vnoremap <s-j> :action MoveLineDown<CR>
+
+" Code nav
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+" Folding
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+
+" Comment
+nnoremap <leader>/ :action CommentByLineComment<CR>
+" exit visual mode after commenting/uncommenting
+vnoremap <leader>/ :action CommentByLineComment<CR> <s-V>
